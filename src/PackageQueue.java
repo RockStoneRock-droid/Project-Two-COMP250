@@ -1,8 +1,8 @@
 import java.util.NoSuchElementException;
 
 public class PackageQueue {
-    SolutionPackage front;
-    SolutionPackage back;
+    Package front;
+    Package back;
     int size;
 
     public PackageQueue() {
@@ -17,7 +17,7 @@ public class PackageQueue {
         size = 0;
     }
 
-    public void enqueue(SolutionPackage newPackage) {
+    public void enqueue(Package newPackage) {
         if (size == 0) {
             //If empty, the new package is both the front and back now.
             back = newPackage;
@@ -30,7 +30,7 @@ public class PackageQueue {
         ++size; //Either way, we will successfully add a package, so deferring this until here saves a line.
     }
 
-    public SolutionPackage peek() {
+    public Package peek() {
         if (size == 0) {
             return null;
         } else {
@@ -38,8 +38,8 @@ public class PackageQueue {
         }
     }
 
-    public SolutionPackage dequeue() {
-        SolutionPackage toReturn;
+    public Package dequeue() {
+        Package toReturn;
         if (size == 0) {
             throw new NoSuchElementException("This queue is empty!");
         } else if (size == 1) {
@@ -51,5 +51,9 @@ public class PackageQueue {
             --size;
         }
         return toReturn;
+    }
+
+    public int getSize() {
+        return size;
     }
 }

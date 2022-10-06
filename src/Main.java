@@ -1,10 +1,15 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Arrays;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+        PackageQueue economy_shipping = new PackageQueue();
+        PackageQueue priority_shipping = new PackageQueue();
+        PackageQueue overnight_shipping = new PackageQueue();
+        Random rng = new Random();
         //TODO: change these to change how often each one happens.
         //TODO: Make sure they total 100 or chanceArray will have null values in it (which would crash the program if accessed).
         int economyChance = 49, priorityChance = 30, overnightChance = 20;
@@ -15,6 +20,25 @@ public class Main {
         String[] descriptionsArray = readDescriptions();
 
         //TODO: Steps 4+5 here go here.
+        for (int i = 0; i < 100; i++) {
+            int chance = rng.nextInt((98 - 0) + 1) + 0;
+            int weights = rng.nextInt((100 - 1) + 1) + 1;
+            int desc = rng.nextInt((49 - 1) + 1) + 1;
+            Package pack = new Package (descriptionsArray[desc], weights, null);
+            if (chanceArray[chance].equals("economy")) economy_shipping.enqueue(pack);
+            else if (chanceArray[chance].equals("priority")) priority_shipping.enqueue(pack);
+            else if (chanceArray[chance].equals("overnight")) overnight_shipping.enqueue(pack);
+
+            if (i % 10 == 0) {
+                System.out.println(economy_shipping.peek());
+                System.out.println(priority_shipping.peek());
+                System.out.println(overnight_shipping.peek());
+            }
+        }
+
+        System.out.println(economy_shipping.getSize());
+        System.out.println(priority_shipping.getSize());
+        System.out.println(overnight_shipping.getSize());
 
     }
 

@@ -10,7 +10,7 @@ public class Package {
     }
 
     public String toString() { //returns patient information
-        return "Package Contents: " + description + " (" + weight + ")";
+        return "Package Contents: " + description + " (" + weight + " lbs)";
     }
 
     public String getDescription() {
