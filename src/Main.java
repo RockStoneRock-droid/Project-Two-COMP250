@@ -12,7 +12,7 @@ public class Main {
         Random rng = new Random();
         //TODO: change these to change how often each one happens.
         //TODO: Make sure they total 100 or chanceArray will have null values in it (which would crash the program if accessed).
-        int economyChance = 49, priorityChance = 30, overnightChance = 20;
+        int economyChance = 20, priorityChance = 20, overnightChance = 60; //edits randomness chance for each queue
 
         //TODO: Use this later to determine which type of shipping each package has.
         String[] chanceArray = fillArray(economyChance, priorityChance, overnightChance);
@@ -20,7 +20,7 @@ public class Main {
         String[] descriptionsArray = readDescriptions();
 
         //TODO: Steps 4+5 here go here.
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i <= 100; i++) {
             int chance = rng.nextInt((98 - 0) + 1) + 0;
             int weights = rng.nextInt((100 - 1) + 1) + 1;
             int desc = rng.nextInt((49 - 1) + 1) + 1;
@@ -30,15 +30,18 @@ public class Main {
             else if (chanceArray[chance].equals("overnight")) overnight_shipping.enqueue(pack);
 
             if (i % 10 == 0) {
+                System.out.println("Timer Is: " + i);
                 System.out.println(economy_shipping.peek());
                 System.out.println(priority_shipping.peek());
                 System.out.println(overnight_shipping.peek());
+                System.out.println("\n");
             }
         }
 
-        System.out.println(economy_shipping.getSize());
-        System.out.println(priority_shipping.getSize());
-        System.out.println(overnight_shipping.getSize());
+        System.out.println("\nFinal Queue Sizes");
+        System.out.println("Economy Shipping Queue: " + economy_shipping.getSize());
+        System.out.println("Priority Shipping Queue: " + priority_shipping.getSize());
+        System.out.println("Overnight Shipping Queue: " + overnight_shipping.getSize());
 
     }
 
