@@ -1,4 +1,4 @@
-# Project-Two-COMP250
+# Product Package Manager
 Package Manager that utilizes Queues
 
 Creates a set number of packages with a random weight and description.
